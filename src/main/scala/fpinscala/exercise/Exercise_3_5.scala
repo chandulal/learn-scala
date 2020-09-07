@@ -6,6 +6,5 @@ object Exercise_3_5 extends App {
     case _ => l.iterator.filterNot(elm => f(elm)).toList
   }
 
-  val filterCondition = (x: Int) => x % 2 == 0
-  println(dropWhile(List(1, 2, 3, 4), filterCondition))
+  println(dropWhile(List(1, 2, 3, 4), (x: Int) => x % 2 == 0))
 }
