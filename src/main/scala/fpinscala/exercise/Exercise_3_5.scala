@@ -1,10 +1,13 @@
 package fpinscala.exercise
 
 object Exercise_3_5 extends App {
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
-    case Nil => List.empty
-    case _ => l.iterator.filterNot(elm => f(elm)).toList
-  }
 
-  println(dropWhile(List(1, 2, 3, 4), (x: Int) => x % 2 == 0))
+  @scala.annotation.tailrec
+  def dropWhile[A](as: List[A])(f: A => Boolean): List[A] =
+    as match {
+      case h :: t if f(h) => dropWhile(t)(f)
+      case _ => as
+    }
+
+  println(dropWhile(List(1, 2, 3, 4))(x => x < 3))
 }
